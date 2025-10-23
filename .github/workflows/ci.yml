@@ -11,18 +11,22 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v4
-    
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
         go-version: '1.21'
-    
+        
     - name: Build
-      run: go build -v ./...
-    
+      run: go build -v .
+      
     - name: Test
-      run: go test -v ./...
-    
-    - name: Run basic check
-      run: timeout 10s go run main.go || true
+      run: |
+        go mod tidy
+        go test -v ./...
+        
+    - name: Run check
+      run: |
+        timeout 10s go run . || exit 0
