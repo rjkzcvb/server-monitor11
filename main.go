@@ -7,7 +7,7 @@ import (
 	"syscall"
 	"time"
 
-	"server-monitor/monitor"
+	"github.com/rjkzcvb/server-monitor11/monitor"
 )
 
 func main() {
